@@ -884,6 +884,7 @@ public class PlaybackController {
                 public void onResponse(StreamInfo response) {
                     mCurrentStreamInfo = response;
                     mVideoManager.setVideoPath(response.getMediaUrl());
+                    mVideoManager.setMetaPlayerPositionOffset(pos);
                     mVideoManager.start();
                 }
 
@@ -1168,6 +1169,7 @@ public class PlaybackController {
                         if (mStartPosition > 0) {
                             if (mPlaybackMethod == PlayMethod.Transcode) {
                                 // we started the stream at seek point
+                                mVideoManager.setMetaPlayerPositionOffset(mStartPosition);
                                 mStartPosition = 0;
                             } else {
                                 mPlaybackState = PlaybackState.SEEKING;
